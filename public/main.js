@@ -1,4 +1,4 @@
-var STORAGE_ID = 'weatherApp';
+var STORAGE_ID = 'weatherChat';
 
 var saveToLocalStorage = function() {
     localStorage.setItem(STORAGE_ID, JSON.stringify(weatherPosts));
@@ -15,16 +15,13 @@ var fetchWeather = function(city) {
         url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=d703871f861842b79c60988ccf3b17ec&units=metric",
 
         success: function(data) {
-            allData.push(data);
-            for (var i = 0; i < allData.length; i++) {
-                var thisCity = {};
-                thisCity.cityName = allData[i].name;
-                thisCity.cityTemp = allData[i].main.temp;
-                thisCity.cityComments = [];
+            var newCity = {
+                name: data.name,
+                temp: data.main.temp,
+                comments: []
             };
-            weatherPosts.push(thisCity);
-            //console.log(weatherPosts);
-            displayWeather(thisCity);
+            weatherPosts.push(newCity);
+            displayWeather();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(textStatus);
@@ -32,31 +29,22 @@ var fetchWeather = function(city) {
     });
 };
 
-var allData = [];
 var weatherPosts = [];
 
 
 
-var displayWeather = function(thisCity) {
+var displayWeather = function() {
+    $('.displayedWeather').empty();
     var source = $("#weather-template").html();
     var template = Handlebars.compile(source);
-    var newHTML = template(thisCity);
-    $('.displayedWeather').append(newHTML);
-};
-
-var storeComments = function(thisPostIndex, thisComment) {
     for (var i = 0; i < weatherPosts.length; i++) {
-        if (thisPostIndex == weatherPosts.indexOf(weatherPosts[i])) {
-            weatherPosts[i].cityComments.push(thisComment);
-            console.log(weatherPosts);
-
-        };
+        var thisPostIndex = weatherPosts.indexOf(weatherPosts[i]);
+        var newHTML = template(weatherPosts[i]);
+        $('.displayedWeather').append(newHTML);
     };
-}
-
-var printComment = function(thisPost, thisComment) {
-    $(thisPost).append('<p class="commentText">' + thisComment + '</p>');
 };
+
+
 
 
 $('.weatherButton').on("click", function() {
@@ -67,15 +55,18 @@ $('.weatherButton').on("click", function() {
 });
 
 $('.displayedWeather').on("click", ".commentButton", function() {
-    $('.commentPost').show();
-    var thisPost = $(this).closest('.cityBlock');
     var thisPostIndex = $(this).closest('.cityBlock').index();
-    var thisComment = $(this).closest('.comDiv').find(".commentInput").val();
-    storeComments(thisPostIndex, thisComment);
-    printComment(thisPost, thisComment);
-    saveToLocalStorage();
+    var thisComment = {};
+    thisComment.text = $(this).closest('.comDiv').find(".commentInput").val();
+    weatherPosts[thisPostIndex].comments.push(thisComment);
+    displayWeather();
+    $('.commentPost').show()
 
 });
 
-getFromLocalStorage();
 
+// $('.displayedWeather').on("click", ".trash", function() {
+
+// })
+
+getFromLocalStorage();

@@ -2,7 +2,8 @@
 <html>
 
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -10,41 +11,48 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1>Weather Chat</h1>
-            <br>
-            <div class="input-group">
-                <input type="text" class="form-control weatherInput" id="usr" placeholder="Enter City">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-primary weatherButton">Get Temp</button>
+    <div class="transparentDiv">
+        <div class="container">
+            <div class="page-header">
+                <h1>Weather Chat</h1>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control weatherInput" id="usr" placeholder="Enter City">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-primary weatherButton">Get Temp</button>
+                    </div>
                 </div>
+                <br>
             </div>
-            <br>
         </div>
-    </div>
-    <div class="container">
-        <div class="displayedWeather "></div>
-    </div>
-    <script id="weather-template" type="text/x-handlebars-template">
-        <div class="cityBlock">
-            <h2 class="cityName">{{cityName}}</h2>
-            <h3 class="cityTemp">{{cityTemp}}&#176;C</h3>
-            <br>
-            <div class="input-group comDiv">
-                <input type="text" class="form-control commentInput" id="usr">
-                <div class="input-group-btn ">
-                    <button type="button" class="btn btn-success commentButton">Comment</button>
+        <div class="container">
+            <div class="displayedWeather "></div>
+        </div>
+        <script id="weather-template" type="text/x-handlebars-template">
+            <div class="cityBlock">
+                <h2 class="cityName">{{name}}</h2>
+                <h3 class="cityTemp">{{temp}}&#176;C</h3>
+                <br>
+                <div class="input-group comDiv">
+                    <input type="text" class="form-control commentInput" id="usr">
+                    <div class="input-group-btn ">
+                        <button type="button" class="btn btn-success commentButton">Comment</button>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="commentPost">Comments:</div>
+                <br>
+                <h4 class="commentPost">COMMENTS:</h4> 
+                {{#each comments}}
+                <div class="well commentText">
+                    {{text}}
+                    <i class="fa fa-trash fa-lg trash" aria-hidden="true"></i>
+                </div>
+                {{/each}}
+        </script>
+        <script type="text/javascript" src="jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
+        <script type="text/javascript" src="main.js"></script>
         </div>
-    </script>
-    <script type="text/javascript" src="jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
-    <script type="text/javascript" src="main.js"></script>
 </body>
 
 </html>
