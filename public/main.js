@@ -44,7 +44,12 @@ var displayWeather = function() {
     };
 };
 
+var removeComment = function(commentToDelete, commentToDeleteIndex, postWithCommentToDeleteIndex) {
+    weatherPosts[postWithCommentToDeleteIndex].comments.splice(commentToDeleteIndex, 1);
+    console.log(weatherPosts[postWithCommentToDeleteIndex].comments)
+    $(commentToDelete).remove();
 
+}
 
 
 $('.weatherButton').on("click", function() {
@@ -65,8 +70,16 @@ $('.displayedWeather').on("click", ".commentButton", function() {
 });
 
 
-// $('.displayedWeather').on("click", ".trash", function() {
-
-// })
+$('.displayedWeather').on("click", ".trashComments", function() {
+    var commentToDelete = $(this).closest('.commentListItem');
+    var commentToDeleteIndex = $(commentToDelete).index();
+    var postWithCommentToDelete = $(commentToDelete).closest('.cityBlock');
+    var postWithCommentToDeleteIndex = $(postWithCommentToDelete).index();
+    // console.log(postWithCommentToDeleteIndex);
+    // console.log(commentToDeleteIndex);
+    removeComment(commentToDelete, commentToDeleteIndex, postWithCommentToDeleteIndex);
+// console.log(postWithCommentToDeleteIndex)
+    // console.log(commentToDelete);
+})
 
 getFromLocalStorage();

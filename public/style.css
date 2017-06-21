@@ -8,12 +8,12 @@ h1 {
     font-color: black;
 }
 
-.trash {
+.trashComments {
 float: right;
 cursor: pointer;
 }
 
-.trash:hover {
+.trashComments:hover {
     color: maroon;
 }
 
@@ -31,7 +31,7 @@ cursor: pointer;
 }
 
 .comDiv,
-.commentText {
+.commentListItem {
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -58,11 +58,11 @@ h2,
 .weatherButton,
 .commentInput,
 .commentButton,
-.commentText {
+.commentListItem {
     font-family: 'Roboto', sans-serif;
 }
 
-.commentText {
+.commentListItem {
     font-weight: bold;
     font-size: 16px;
     border: 1px solid #dff0d8;
