@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title></title>
+    <title>WeatherChat</title>
 </head>
 
 <body>
@@ -16,12 +16,19 @@
             <div class="page-header">
                 <h1>Weather Chat</h1>
                 <br>
-                <div class="input-group">
-                    <input type="text" class="form-control weatherInput" id="usr" placeholder="Enter City">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary weatherButton">Get Temp</button>
+                <form id="postForm">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control weatherInput" id="usr" placeholder="Enter City">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn weatherButton">Get Temp</button>
+                        </div>
                     </div>
-                </div>
+                    <br>
+                    <button type="button" class="btn sortButton">Sort by Name</button>
+                    <button type="button" class="btn sortHighTempButton">Highest Temp</button>
+                    <button type="button" class=" btn 
+ sortLowTempButton">Lowest Temp</button>
+                </form>
                 <br>
             </div>
         </div>
@@ -30,22 +37,25 @@
         </div>
         <script id="weather-template" type="text/x-handlebars-template">
             <div class="cityBlock">
-                <h2 class="cityName">{{name}}</h2>
+                <h2 class="cityName">{{name}}   <i class="fa fa-times-circle-o trashPost" aria-hidden="true"></i></h2>
                 <h3 class="cityTemp">{{temp}}&#176;C</h3>
+                <h4 class="time">{{time}}</h4>
+                <h4 class="maxMinTemp">Min: {{lowTemp}}&#176;C / Max: {{highTemp}}&#176;C </h4>
                 <br>
                 <div class="input-group comDiv">
                     <input type="text" class="form-control commentInput" id="usr">
                     <div class="input-group-btn ">
-                        <button type="button" class="btn btn-success commentButton">Comment</button>
+                        <button type="button" class="btn commentButton">Comment</button>
                     </div>
                 </div>
                 <br>
-                <h4 class="commentPost">COMMENTS:</h4>
                 <ul class="commentList">
                     {{#each comments}}
                     <li class="well commentListItem">
-                        {{text}}
-                        <i class="fa fa-trash fa-lg trashComments" aria-hidden="true"></i>
+                     <i class="fa fa-times trashComments" aria-hidden="true"></i>
+                        <div><span>Date:</span> {{time}}</div>
+                        <div> <span>Comment:</span> {{text}}</div>
+
                     </li>
                     {{/each}}
                 </ul>

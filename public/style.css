@@ -3,35 +3,40 @@ body {
     background-size: cover;
 }
 
+li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0px;
+}
+
 h1 {
     font-size: 80px;
     font-color: black;
 }
 
-.trashComments {
-float: right;
-cursor: pointer;
+.trashComments,
+.trashPost {
+    float: right;
+    cursor: pointer;
 }
 
-.trashComments:hover {
+.trashComments:hover,
+.trashPost:hover {
     color: maroon;
-}
-
-.commentPost {
-    display: none;
 }
 
 .cityBlock {
     border-radius: 5px;
-    /*    box-shadow: 2px 2px 10px #ccced1;
-*/
     margin-bottom: 20px;
     overflow: auto;
     background-color: #e6e8ed;
 }
 
 .comDiv,
-.commentListItem {
+.commentListItem,
+.trashPost {
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -39,7 +44,6 @@ cursor: pointer;
 h1,
 h2,
 h3,
-h4,
 .commentPost {
     font-family: 'Bree Serif', serif;
 }
@@ -50,6 +54,7 @@ h2 {
 
 h3,
 h2,
+h4,
 .commentPost {
     margin-left: 20px;
 }
@@ -58,13 +63,58 @@ h2,
 .weatherButton,
 .commentInput,
 .commentButton,
-.commentListItem {
+.commentListItem,
+h4 {
     font-family: 'Roboto', sans-serif;
 }
 
 .commentListItem {
-    font-weight: bold;
+    /*    font-weight: bold;
+*/
     font-size: 16px;
     border: 1px solid #dff0d8;
-    background-color: rgba(92, 181, 92, 0.16)
+    background-color: #bfd9c7
+}
+
+.trashComments {
+    color: #3A8382;
+}
+
+.weatherButton,
+.commentButton,
+.commentButton:hover,
+.weatherButton:hover,
+.weatherButton:active,
+.weatherButton:focus,
+.weatherButton:visited {
+    background-color: #3A8382;
+    color: white;
+}
+
+span {
+    font-weight: bold;
+}
+
+.sortButton,
+.sortButton:hover,
+.sortButton:active,
+.sortButton:visited,
+
+.sortHighTempButton,
+.sortHighTempButton:hover,
+.sortHighTempButton:active,
+.sortHighTempButton:visited,
+
+.sortLowTempButton,
+.sortLowTempButton:hover,
+.sortLowTempButton:active,
+.sortLowTempButton:visited {
+    background-color: #153838;
+    color: white;
+}
+.sortHighTempButton:focus,
+.sortButton:focus,
+.sortLowTempButton:focus {
+    background-color:#BFD9C7; 
+    color:black;
 }
